@@ -1,0 +1,17 @@
+div {
+  border: 1px solid greenyellow;
+}
+
+#one {
+  width: 20%;
+  background-color: green;
+}
+
+.red {
+  color: red;
+  width: 300px;
+}
+
+.bgColor {
+  background-color: beige;
+}
