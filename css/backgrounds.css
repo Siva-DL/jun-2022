@@ -1,8 +1,12 @@
 .main {
   /* background-color: red; */
   height: 100vh;
-  background-image: url(../images/khaleela.jpg);
+  /* background-image: url(../images/khaleela.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed; */
+  background: url(../images/profile.png) no-repeat 90% 10% fixed,
+    url(../images/khaleela.jpg) no-repeat center fixed;
+  background-size: 5%, cover;
 }
