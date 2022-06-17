@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Display: none | block | inline | inline-block */
+        * {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        header {
+            background-color: bisque;
+            padding: 15px;
+        }
+
+        #logo {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            /* margin-right: 50px; */
+            /* background-color: #ccc; */
+        }
+
+        #menu {
+            float: right;
+            /* width: 80%; */
+            /* background-color: brown; */
+        }
+
+        .menuItem {
+            /* display: inline-block; */
+            float: left;
+            padding: 10px;
+            background-color: red;
+            margin-left: 1px;
+        }
+
+        .mainContent {
+            background-color: #ccc;
+            padding: 20px;
+            height: 85vh;
+        }
+
+        .clear {
+            clear: left;
+        }
+
+        /* display: inlie-block & flexbox | floats */
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav>
+                <div id="logo"> Logo </div>
+                <div id="menu">
+                    <div class="menuItem"> Home 1</div>
+                    <div class="menuItem"> Home 2</div>
+                    <div class="menuItem"> Home 3</div>
+                </div>
+                <div class="clear"></div>
+            </nav>
+        </header>
+        <div class="mainContent">
+            Main Content
+        </div>
+    </main>
+</body>
+
+</html>
