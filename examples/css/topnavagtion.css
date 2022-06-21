@@ -1,0 +1,56 @@
+/* Header */
+
+#mainheader {
+  /* padding: 3px; */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.mainNav {
+  /* padding: 10px; */
+  background-color: brown;
+  height: 100px;
+}
+
+.Logo {
+  width: 15%;
+  text-align: center;
+  line-height: 100px;
+  color: #fff;
+  float: left;
+}
+.menuWrap {
+  width: 85%;
+  float: left;
+}
+.menu {
+  padding-right: 25px;
+  float: right;
+}
+
+li {
+  display: inline-block;
+  margin-left: 8px;
+  line-height: 100px;
+}
+
+a {
+  color: #fff;
+
+  /* text-decoration */
+  text-decoration: none;
+}
+
+/* Content Starts */
+#home {
+  height: 150vh;
+  background-color: rgb(33, 73, 115);
+  color: #fff;
+  text-align: center;
+}
+
+.mainContent {
+  padding-top: 100px;
+}
