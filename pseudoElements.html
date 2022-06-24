@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            width: 400px;
+            border: 1px solid;
+            padding: 10px;
+        }
+
+        p::first-line {
+            color: red;
+            font-weight: 900;
+        }
+
+        p::first-letter {
+            font-size: 40px;
+            /* background-color: blue; */
+        }
+
+        p::selection {
+            background-color: lightblue;
+            color: blue;
+        }
+
+        .brdr {
+            width: 200px;
+            margin: auto;
+            text-align: center;
+            /* text-decoration: underline; */
+            /* border-bottom: 2px solid;s */
+            position: relative;
+
+        }
+
+        .brdr::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            left: 30%;
+            background-color: red;
+        }
+
+        .brdr::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: red;
+            right: 25%;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium omnis facilis itaque perspiciatis quasi
+        nostrum neque aspernatur consequuntur, at similique natus quaerat obcaecati saepe repellat optio delectus id ea
+        iste?
+    </p>
+    <div class="brdr"> heading </div>
+</body>
+
+</html>
