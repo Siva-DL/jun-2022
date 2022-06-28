@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+            animation-name: moveElement;
+            animation-duration: 1s;
+            margin: auto;
+            border-radius: 50%;
+            animation-iteration-count: infinite;
+            /* animation-direction: alternate; */
+            /* animation-delay: 2s; */
+            text-align: center;
+            line-height: 100px;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        .demo:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes moveElement {
+            /* 0% {
+                margin-left: 8px;
+                background-color: blue;
+            }
+
+            10% {
+                margin-top: 100px;
+                margin-left: 100px;
+            }
+
+            20% {
+                margin-top: 0px;
+                margin-left: 200px;
+            }
+
+            50% {
+                margin-top: 100px;
+                margin-left: 500px;
+            }
+
+
+            100% {
+                margin-left: 1000px;
+                background-color: brown;
+            } */
+
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo"> Hello </div>
+</body>
+
+</html>
