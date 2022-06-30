@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            background-color: antiquewhite;
+            display: flex;
+            /*Horizontal*/
+            justify-content: center;
+            /* vertical */
+            /* align-items: center; */
+            padding: 0px;
+            height: 90vh;
+            flex-wrap: wrap;
+            align-content: stretch;
+
+        }
+
+        ul li {
+            background-color: #ccc;
+            /* width: 10%; */
+            flex-grow: 2;
+            list-style: none;
+            order: 4;
+        }
+
+        ul li:nth-child(2) {
+            flex-grow: 10;
+            order: 3;
+        }
+
+        ul li:nth-child(3) {
+            flex-shrink: 1;
+            background-color: crimson;
+            order: 1;
+        }
+
+        ul li:nth-child(even) {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Display: inline-block, floats: -->
+    <!-- Flexbox -->
+
+    <ul>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            3
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+    </ul>
+</body>
+
+</html>
