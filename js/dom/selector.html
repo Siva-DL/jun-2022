@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li {
+            list-style: none;
+            text-align: center;
+            padding: 10px;
+            background-color: #ccc;
+            margin-top: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- id, class, element -->
+
+    <div id="demoId"> Demo ID </div>
+    <div class="demoClass"> Demo Class </div>
+    <div class="demoClass"> Element </div>
+
+    <ul id="demoUl">
+
+    </ul>
+
+    <script>
+        // id: 1
+        // class: 2
+        // ele: 3
+
+        console.log(document.getElementById('demoId'));
+        console.log(document.getElementsByClassName('demoClass'));
+        console.log(document.getElementsByTagName('div'));
+
+        console.log(document.getElementById('demoId').innerText);
+        document.getElementById('demoId').innerText = "<h1>New text From DOM</h1>";
+        document.getElementById('demoId').innerHTML = "<h1>New text From DOM</h1>";
+        document.getElementById('demoId').innerHTML = "<h1>New text From DOM1</h1>";
+
+        const arr = [1, 2, 4, 5];
+        let txt = '';
+
+        for (var i in arr) {
+            txt += "<li>" + arr[i] + "</li>"
+        }
+        document.getElementById('demoUl').innerHTML = txt;
+
+    </script>
+</body>
+
+</html>
