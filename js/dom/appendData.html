@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form-control {
+            width: 50%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .usersList {
+            width: 50%;
+            margin: 100px auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            list-style: none;
+
+        }
+
+        .usersList li {
+            width: 200px;
+            min-height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-control">
+        <input type="text" class="user">
+        <button type="button" id="add"> ADD </button>
+    </div>
+    <ul class="usersList">
+        <li>
+            User1
+        </li>
+    </ul>
+    <script>
+        const userVal = document.querySelector('.user');
+        const add = document.querySelector('#add');
+        const usersList = document.querySelector('.usersList');
+
+
+        // ele.addEventListener('eventName',cb, true/false);
+
+        let usersData = [];
+        add.addEventListener('click', function () {
+            // console.log(this);
+            // console.log(userVal.value);
+            // // usersList.innerHTML = userVal.value;
+
+
+
+            // // createElement, addText, 
+            // const Li = document.createElement('li');
+            // Li.innerText = userVal.value;
+            // console.log(Li);
+
+
+
+            // // parent.appendChild(childElement);
+            // usersList.appendChild(Li);
+
+
+
+            // -------------------------WebStorage:
+
+
+
+            usersData.push({ name: userVal.value })
+
+            console.log(usersData);
+
+            localStorage.setItem('users', JSON.stringify(usersData));
+
+
+
+
+        }, false);
+        console.log(JSON.parse(localStorage.getItem('users')));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .form-wrap {
+            width: 300px;
+            margin: auto;
+        }
+
+        .form-control {
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 3px;
+        }
+
+        #add,
+        #save {
+            width: 100%;
+            margin-top: 5px;
+            padding: 10px;
+        }
+
+        #save {
+            display: none;
+        }
+
+        .dataBinding {
+            width: 50%;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        table,
+        tr,
+        th,
+        td {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-wrap">
+        <div class="form-control">
+            <input type="text" name="username" id="username" placeholder="userName">
+        </div>
+        <div class="form-control">
+            <input type="password" name="password" id="password" placeholder="password">
+        </div>
+        <div class="form-control">
+            <input type="email" name="email" id="email" placeholder="email">
+        </div>
+        <div class="form-control">
+            <input type="text" name="contact" id="contact" placeholder="contact">
+        </div>
+        <div class="form-control" style="text-align: center;">
+            <button type="button" id="add"> ADD DATA </button>
+            <button type="button" id="save"> SAVE DATA </button>
+        </div>
+    </div>
+    <div class="dataBinding">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Contact
+                    </th>
+                    <th>
+                        Edit / Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="userData">
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        Some x
+                    </td>
+                    <td>
+                        12312312
+                    </td>
+                    <td>
+                        test@test.com
+                    </td>
+                    <td>
+                        123-12-1233
+                    </td>
+                    <td>
+                        <button type="button" class="edit"> EDIt </button>
+                        <button type="button" class="del"> DELETE </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const username = document.querySelector('#username');
+        const password = document.querySelector('#password');
+        const email = document.querySelector('#email');
+        const contact = document.querySelector('#contact');
+        const add = document.querySelector('#add');
+        const save = document.querySelector('#save');
+        const userData = document.querySelector('#userData');
+
+        let adminData;
+
+        add.addEventListener('click', function () {
+            // debugger;
+            if (localStorage.getItem('adminData')) {
+                adminData = JSON.parse(localStorage.getItem('adminData'));
+            } else {
+                adminData = [];
+            }
+
+            let userInfo = {
+                name: username.value,
+                password: password.value,
+                email: email.value,
+                contact: contact.value,
+            }
+            adminData.push(userInfo);
+            localStorage.setItem('adminData', JSON.stringify(adminData));
+
+
+            username.value = ""
+            password.value = ""
+            email.value = ""
+            contact.value = ""
+
+            addToTable(JSON.parse(localStorage.getItem('adminData')));
+        });
+
+        addToTable(JSON.parse(localStorage.getItem('adminData')));
+
+        function addToTable(response) {
+            let trData = "";
+
+            for (let user of response) {
+                trData += `<tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        ${user.name}
+                    </td>
+                    <td>
+                        ${user.password}
+                    </td>
+                    <td>
+                        ${user.email}
+                    </td>
+                    <td>
+                        ${user.contact}
+                    </td>
+                    <td>
+                        <button type="button" class="edit"> EDIt </button>
+                        <button type="button" class="del"> DELETE </button>
+                    </td>
+                </tr>`
+            }
+            userData.innerHTML = trData;
+        }
+
+
+        console.log(document.querySelectorAll('.edit'));
+
+        for (let i = 0; i < document.querySelectorAll('.edit').length; i++) {
+            document.querySelectorAll('.edit')[i].onclick = function () {
+                debugger;
+                console.log(this.parentNode.parentNode.children[1].innerText);
+                username.value = this.parentNode.parentNode.children[1].innerText
+                password.value = this.parentNode.parentNode.children[2].innerText
+                email.value = this.parentNode.parentNode.children[3].innerText
+                contact.value = this.parentNode.parentNode.children[4].innerText
+                save.style.display = "inline";
+                add.style.display = "none";
+                // if (JSON.parse(localStorage.getItem('adminData')).includes(this.parentNode.parentNode.children[1].innerText)) {
+                //     JSON.parse(localStorage.getItem('adminData')).splice(indexOf(this.parentNode.parentNode.children[1].innerText), 1)
+                // }
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
