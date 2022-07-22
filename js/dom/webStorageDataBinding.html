@@ -62,16 +62,16 @@
 <body>
     <div class="form-wrap">
         <div class="form-control">
-            <input type="text" name="username" id="username" placeholder="userName">
+            <input type="text" name="username" id="username" placeholder="userName" required>
         </div>
         <div class="form-control">
-            <input type="password" name="password" id="password" placeholder="password">
+            <input type="password" name="password" id="password" placeholder="password" required>
         </div>
         <div class="form-control">
-            <input type="email" name="email" id="email" placeholder="email">
+            <input type="email" name="email" id="email" placeholder="email" required>
         </div>
         <div class="form-control">
-            <input type="text" name="contact" id="contact" placeholder="contact">
+            <input type="text" name="contact" id="contact" placeholder="contact" required maxlength="10">
         </div>
         <div class="form-control" style="text-align: center;">
             <button type="button" id="add"> ADD DATA </button>
@@ -146,33 +146,51 @@
                 adminData = [];
             }
 
-            let userInfo = {
-                name: username.value,
-                password: password.value,
-                email: email.value,
-                contact: contact.value,
+            const stringRegEx = /^[a-zA-Z]+$/;
+            const numRegEx = /^[0-9]+$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,20}$/;
+
+            console.log(stringRegEx.test(username.value));
+
+            if (!stringRegEx.test(username.value)) {
+                alert('Please enter only char"s')
+
+            } else if (!numRegEx.test(contact.value)) {
+                alert('Please enter only nums"')
+
+            } else {
+                let userInfo = {
+                    name: username.value,
+                    password: password.value,
+                    email: email.value,
+                    contact: contact.value,
+                }
+                adminData.push(userInfo);
+                localStorage.setItem('adminData', JSON.stringify(adminData));
+
+
+                username.value = ""
+                password.value = ""
+                email.value = ""
+                contact.value = ""
+
+                addToTable(JSON.parse(localStorage.getItem('adminData')));
+
             }
-            adminData.push(userInfo);
-            localStorage.setItem('adminData', JSON.stringify(adminData));
 
-
-            username.value = ""
-            password.value = ""
-            email.value = ""
-            contact.value = ""
-
-            addToTable(JSON.parse(localStorage.getItem('adminData')));
         });
 
         addToTable(JSON.parse(localStorage.getItem('adminData')));
+        edit();
+        del();
 
         function addToTable(response) {
             let trData = "";
-
+            let i = 1;
             for (let user of response) {
                 trData += `<tr>
                     <td>
-                        1
+                        ${i++}
                     </td>
                     <td>
                         ${user.name}
@@ -193,27 +211,87 @@
                 </tr>`
             }
             userData.innerHTML = trData;
+            edit();
+            // Task: try With AppendCHild for tbody:
+            del()
         }
 
 
-        console.log(document.querySelectorAll('.edit'));
+        function edit() {
+            const editData = document.querySelectorAll('.edit');
+            const localUserData = JSON.parse(localStorage.getItem('adminData')); // [{}, {}]
+            for (let i = 0; i < editData.length; i++) {
+                editData[i].onclick = function () {
+                    alert();
+                    debugger;
+                    console.log(this.parentNode.parentNode.children[1].innerText);
+                    username.value = this.parentNode.parentNode.children[1].innerText // Key
+                    password.value = this.parentNode.parentNode.children[2].innerText
+                    email.value = this.parentNode.parentNode.children[3].innerText
+                    contact.value = this.parentNode.parentNode.children[4].innerText
+                    save.style.display = "inline";
+                    add.style.display = "none";
 
-        for (let i = 0; i < document.querySelectorAll('.edit').length; i++) {
-            document.querySelectorAll('.edit')[i].onclick = function () {
-                debugger;
-                console.log(this.parentNode.parentNode.children[1].innerText);
-                username.value = this.parentNode.parentNode.children[1].innerText
-                password.value = this.parentNode.parentNode.children[2].innerText
-                email.value = this.parentNode.parentNode.children[3].innerText
-                contact.value = this.parentNode.parentNode.children[4].innerText
-                save.style.display = "inline";
-                add.style.display = "none";
-                // if (JSON.parse(localStorage.getItem('adminData')).includes(this.parentNode.parentNode.children[1].innerText)) {
-                //     JSON.parse(localStorage.getItem('adminData')).splice(indexOf(this.parentNode.parentNode.children[1].innerText), 1)
-                // }
+                    let scope = this;
+                    save.onclick = function () {
+                        for (let user of localUserData) {
+                            debugger
+                            if (scope.parentNode.parentNode.children[1].innerText === user.name) {
+                                user.name = username.value;
+                                user.password = password.value;
+                                user.email = email.value;
+                                user.contact = contact.value;
+                            }
+                        }
+
+                        localStorage.setItem('adminData', JSON.stringify(localUserData));
+                        addToTable(JSON.parse(localStorage.getItem('adminData')));
+                        save.style.display = "none";
+                        add.style.display = "inline";
+                        username.value = ""
+                        password.value = ""
+                        email.value = ""
+                        contact.value = ""
+                    }
+
+                    console.log(localUserData);
+
+                }
             }
         }
 
+
+
+        function del() {
+            const deleteRecord = document.querySelectorAll('.del');
+            const localUserData = JSON.parse(localStorage.getItem('adminData'));  // [{}, {}]
+
+            for (let delClick of deleteRecord) {
+                delClick.onclick = function () {
+                    let conformation = confirm('are you sure want to delete the record?');
+                    console.log(conformation);
+                    if (conformation) {
+                        try {
+                            for (let user of localUserData) {
+                                if (this.parentNode.parentNode.children[1].innerText === user.name) {
+                                    localUserData.splice(localUserData.indexOf(user), 1);
+                                }
+                            }
+                            console.log(localUserData);
+                            localStorage.setItem('adminData', JSON.stringify(localUserData));
+                            addToTable(JSON.parse(localStorage.getItem('adminData')));
+                        } catch (error) {
+                            console.log(error)
+                        }
+
+                    }
+
+
+                }
+            }
+
+
+        }
 
 
     </script>
