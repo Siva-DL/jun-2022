@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* #demo {
+            width: 500px;
+            margin: auto;
+            background-color: red;
+            min-height: 50px;
+        } */
+
+
+        /* max-width: desktop first approach */
+        /* min-width: mobile first approach */
+        /* @media screen and (max-width:500px) {
+            #demo {
+                width: 100%;
+            }
+        } */
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #ccc;
+        }
+
+        .menu li {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        .menuBtn {
+            display: none;
+        }
+
+        @media screen and (max-width:572px) {
+            nav {
+                position: relative;
+            }
+
+            .menuBtn {
+                display: inline;
+                padding: 10px;
+            }
+
+            .menu {
+                position: absolute;
+                background-color: #ccc;
+                top: 60px;
+                width: 100%;
+                padding: 0px;
+                left: 0px;
+                margin: 0px;
+                text-align: center;
+                display: none;
+            }
+
+            .menu li {
+                display: block;
+                padding: 10px;
+                border-top: 1px solid #fff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="demo">
+        Hello World!
+    </div> -->
+
+    <nav>
+        <div class="logo">
+            <h1> Logo </h1>
+        </div>
+        <ul class="menu">
+            <li>
+                Home
+            </li>
+            <li>
+                About
+            </li>
+            <li>
+                Contact
+            </li>
+        </ul>
+        <button type="button" class="menuBtn">
+            Menu
+        </button>
+    </nav>
+    <script>
+
+
+        document.querySelector('.menuBtn').onclick = function () {
+
+            if (document.querySelector('.menu').style.display === "none") {
+                document.querySelector('.menu').style.display = "block"
+            } else {
+                document.querySelector('.menu').style.display = "none"
+            }
+        }
+    </script>
+</body>
+
+</html>
